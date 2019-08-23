@@ -1,9 +1,13 @@
-package com.apeman.viewholderdemo.base;
+package com.apeman.viewholderdemo;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.apeman.library.holder.AutoWindViewHolder;
+import com.apeman.library.protocl.OnElementClickListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +32,21 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> {
     @NonNull
     @Override
     public AutoWindViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return HolderPool.getViewHolderByType(viewType, parent);
+        AutoWindViewHolder autoWindViewHolder = HolderPool.getViewHolderByType(viewType, parent);
+        autoWindViewHolder.regElementClickListener(new OnElementClickListener<JSONObject>() {
+            @Override
+            public void onViewPreClick(View v, JSONObject data) {
+                //点击之前调用
+                //TODO: 统计代码？自定义点击事件？
+            }
+
+            @Override
+            public void onViewClicked(View v, JSONObject data) {
+                //点击之后调用
+                //TODO: 统计代码？
+            }
+        });
+        return autoWindViewHolder;
     }
 
     @Override

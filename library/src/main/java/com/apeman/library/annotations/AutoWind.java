@@ -1,4 +1,4 @@
-package com.apeman.viewholderdemo.annotations;
+package com.apeman.library.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

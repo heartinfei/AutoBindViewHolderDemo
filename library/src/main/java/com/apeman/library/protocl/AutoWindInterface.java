@@ -1,4 +1,4 @@
-package com.apeman.viewholderdemo.protocl;
+package com.apeman.library.protocl;
 
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com

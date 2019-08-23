@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apeman.viewholderdemo.R;
-import com.apeman.viewholderdemo.base.AutoWindAdapter;
+import com.apeman.viewholderdemo.AutoWindAdapter;
 import com.google.gson.Gson;
 
 import org.json.JSONException;

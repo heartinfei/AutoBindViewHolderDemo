@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.apeman.viewholderdemo.R;
-import com.apeman.viewholderdemo.annotations.AutoClick;
-import com.apeman.viewholderdemo.annotations.AutoWind;
-import com.apeman.viewholderdemo.annotations.HolderType;
-import com.apeman.viewholderdemo.base.AutoWindViewHolder;
+import com.apeman.library.annotations.AutoClick;
+import com.apeman.library.annotations.AutoWind;
+import com.apeman.library.annotations.HolderType;
+import com.apeman.library.holder.AutoWindViewHolder;
 
 import org.json.JSONObject;
 
@@ -30,6 +30,6 @@ public class MyViewHolder2 extends AutoWindViewHolder {
 
     @Override
     public void onViewClicked(View v, JSONObject data) {
-
+        //TODO：点击事件
     }
 }

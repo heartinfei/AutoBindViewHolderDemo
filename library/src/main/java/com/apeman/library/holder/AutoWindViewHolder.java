@@ -1,4 +1,4 @@
-package com.apeman.viewholderdemo.base;
+package com.apeman.library.holder;
 
 
 import android.util.SparseArray;
@@ -12,11 +12,11 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.apeman.viewholderdemo.R;
-import com.apeman.viewholderdemo.annotations.AutoClick;
-import com.apeman.viewholderdemo.annotations.AutoWind;
-import com.apeman.viewholderdemo.protocl.AutoWindInterface;
-import com.apeman.viewholderdemo.protocl.OnElementClickListener;
+import com.apeman.library.R;
+import com.apeman.library.annotations.AutoClick;
+import com.apeman.library.annotations.AutoWind;
+import com.apeman.library.protocl.AutoWindInterface;
+import com.apeman.library.protocl.OnElementClickListener;
 import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
@@ -41,10 +41,12 @@ public abstract class AutoWindViewHolder extends RecyclerView.ViewHolder impleme
     public AutoWindViewHolder(@NonNull ViewGroup parentView, @LayoutRes int layout) {
         super(LayoutInflater.from(parentView.getContext())
                 .inflate(layout, parentView, false));
+        itemView.setOnClickListener(this);
     }
 
     @Override
     public void bindData(JSONObject data) {
+        itemView.setTag(TAG_KEY, data);
         for (Field f : this.getClass().getDeclaredFields()) {
             handleField(f, data);
         }
