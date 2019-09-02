@@ -1,4 +1,7 @@
-package com.apeman.library.holder;
+package com.apeman.library.ga;
+
+import com.apeman.library.holder.AutoWindViewHolder;
+import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -39,7 +42,7 @@ public class GaInfo implements Iterator<GaInfo> {
 
     private List<String> getGaChain(GaInfo e) {
         List<String> gas = new LinkedList<>();
-        gas.add(e.getViewHolder().toString());
+        gas.add(e.getViewHolder().getFrom());
         if (e.hasNext()) {
             gas.addAll(getGaChain(e.next()));
         }

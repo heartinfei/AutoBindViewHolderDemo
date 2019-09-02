@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import com.apeman.library.annotations.AutoClick;
 import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
-import com.apeman.library.holder.AutoWindViewHolder;
+import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
 import com.apeman.viewholderdemo.R;
 
 import org.json.JSONObject;
@@ -26,7 +26,7 @@ import org.json.JSONObject;
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
 @HolderType(cellType = 1)
-public class MyViewHolder3 extends AutoWindViewHolder {
+public class MyViewHolder3 extends JsonAutoWindViewHolder {
     //TODO：View 嵌套问题
     @AutoClick(viewId = R.id.textView)
     @AutoWind(viewId = R.id.textView, fieldName = "name")

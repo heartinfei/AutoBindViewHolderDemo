@@ -10,7 +10,7 @@ import com.apeman.viewholderdemo.R;
 import com.apeman.library.annotations.AutoClick;
 import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
-import com.apeman.library.holder.AutoWindViewHolder;
+import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
 
 import org.json.JSONObject;
 
@@ -18,7 +18,7 @@ import org.json.JSONObject;
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
 @HolderType(cellType = 1)
-public class MyViewHolder2 extends AutoWindViewHolder {
+public class MyViewHolder2 extends JsonAutoWindViewHolder {
 
     @AutoClick(viewId = R.id.iv)
     @AutoWind(viewId = R.id.iv, fieldName = "url")

@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apeman.library.ga.GaInfo;
 import com.apeman.library.holder.AutoWindViewHolder;
-import com.apeman.library.holder.GaInfo;
 import com.apeman.library.protocl.GaCallback;
 
 import org.json.JSONException;
@@ -31,14 +31,6 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> im
         this.nextGaCallback = gaCallback;
     }
 
-    public void setData(List<JSONObject> ds) {
-        dataSource.clear();
-        if (ds != null) {
-            dataSource.addAll(ds);
-        }
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public AutoWindViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,6 +45,14 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> im
         if (nextGaCallback != null) {
             nextGaCallback.handleGaEvent(gaInfo);
         }
+    }
+
+    public void setData(List<JSONObject> ds) {
+        dataSource.clear();
+        if (ds != null) {
+            dataSource.addAll(ds);
+        }
+        notifyDataSetChanged();
     }
 
     @Override

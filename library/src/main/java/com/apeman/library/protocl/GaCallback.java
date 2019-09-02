@@ -1,6 +1,6 @@
 package com.apeman.library.protocl;
 
-import com.apeman.library.holder.GaInfo;
+import com.apeman.library.ga.GaInfo;
 
 /**
  * @author Rango on 2019-09-02 wangqiang@smzdm.com
