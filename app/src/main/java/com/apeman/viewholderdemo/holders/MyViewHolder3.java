@@ -17,11 +17,17 @@ import com.apeman.viewholderdemo.R;
 import org.json.JSONObject;
 
 /**
+ * {
+ *     "key1":"value1",
+ *     "key2":"value2",
+ *     "key3":"value3"
+ * }
+ *
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
 @HolderType(cellType = 1)
 public class MyViewHolder3 extends AutoWindViewHolder {
-
+    //TODO：View 嵌套问题
     @AutoClick(viewId = R.id.textView)
     @AutoWind(viewId = R.id.textView, fieldName = "name")
     TextView tv;

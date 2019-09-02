@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apeman.library.R;
 import com.apeman.library.annotations.AutoClick;
 import com.apeman.library.annotations.AutoWind;
+import com.apeman.library.annotations.HolderType;
 import com.apeman.library.protocl.AutoWindInterface;
+import com.apeman.library.protocl.GaCallback;
 import com.apeman.library.protocl.OnElementClickListener;
 import com.bumptech.glide.Glide;
 
@@ -32,17 +34,55 @@ import java.util.List;
  */
 public abstract class AutoWindViewHolder extends RecyclerView.ViewHolder implements
         AutoWindInterface<JSONObject>, View.OnClickListener {
+    //用于存储HolderData
     private final int TAG_KEY = R.id.viewExtra;
+    //GA统计
+    private GaCallback gaCallback = null;
     //注册的额外监听
     private List<OnElementClickListener<JSONObject>> regElementListeners = new LinkedList<>();
     //缓存View提高效率
     private SparseArray<View> viewCache = new SparseArray<>();
+    //卡片类型，通过注解生成
+    private final int cellType;
+    //用于GA统计
+    private String from = null;
 
     public AutoWindViewHolder(@NonNull ViewGroup parentView, @LayoutRes int layout) {
         super(LayoutInflater.from(parentView.getContext())
                 .inflate(layout, parentView, false));
+        HolderType holderType = getClass().getAnnotation(HolderType.class);
+        if (holderType != null) {
+            cellType = holderType.cellType();
+        } else {
+            cellType = -1;
+        }
         itemView.setOnClickListener(this);
     }
+
+    public AutoWindViewHolder withFrom(String from) {
+        this.from = from;
+        return this;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public AutoWindViewHolder withGaCallback(GaCallback callback) {
+        this.gaCallback = callback;
+        return this;
+    }
+
+    @Override
+    public int getHolderType() {
+        return cellType;
+    }
+
+    @Override
+    public JSONObject getHolderData() {
+        return getTagData(itemView);
+    }
+
 
     @Override
     public void bindData(JSONObject data) {
@@ -146,6 +186,10 @@ public abstract class AutoWindViewHolder extends RecyclerView.ViewHolder impleme
         onViewClicked(view, data);
         for (OnElementClickListener<JSONObject> l : regElementListeners) {
             l.onViewClicked(view, data);
+        }
+
+        if (gaCallback != null) {
+            gaCallback.handleGaEvent(new GaInfo(this, null));
         }
     }
 

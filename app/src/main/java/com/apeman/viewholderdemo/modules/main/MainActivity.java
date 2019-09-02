@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.apeman.viewholderdemo.R;
 import com.apeman.viewholderdemo.AutoWindAdapter;
+import com.apeman.viewholderdemo.R;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -19,7 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rlv;
-    private AutoWindAdapter adapter = new AutoWindAdapter();
+    private AutoWindAdapter adapter = new AutoWindAdapter("from");
     private Gson gson = new Gson();
 
     @Override

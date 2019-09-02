@@ -1,13 +1,13 @@
 package com.apeman.viewholderdemo;
 
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apeman.library.holder.AutoWindViewHolder;
-import com.apeman.library.protocl.OnElementClickListener;
+import com.apeman.library.holder.GaInfo;
+import com.apeman.library.protocl.GaCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,8 +18,18 @@ import java.util.List;
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
-public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> {
+public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> implements GaCallback {
     private List<JSONObject> dataSource = new LinkedList<>();
+    private GaCallback registedGaCallback = null;
+    private final String from;
+
+    public AutoWindAdapter(String from) {
+        this.from = from;
+    }
+
+    public void regGaCallback(GaCallback gaCallback) {
+        this.registedGaCallback = gaCallback;
+    }
 
     public void setData(List<JSONObject> ds) {
         dataSource.clear();
@@ -32,21 +42,17 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> {
     @NonNull
     @Override
     public AutoWindViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        AutoWindViewHolder autoWindViewHolder = HolderPool.getViewHolderByType(viewType, parent);
-        autoWindViewHolder.regElementClickListener(new OnElementClickListener<JSONObject>() {
-            @Override
-            public void onViewPreClick(View v, JSONObject data) {
-                //点击之前调用
-                //TODO: 统计代码？自定义点击事件？
-            }
+        return HolderPool.getViewHolderByType(viewType, parent)
+                .withGaCallback(this)
+                .withFrom(from);
+    }
 
-            @Override
-            public void onViewClicked(View v, JSONObject data) {
-                //点击之后调用
-                //TODO: 统计代码？
-            }
-        });
-        return autoWindViewHolder;
+    @Override
+    public void handleGaEvent(GaInfo gaInfo) {
+        //TODO: GA统计
+        if (registedGaCallback != null) {
+            registedGaCallback.handleGaEvent(gaInfo);
+        }
     }
 
     @Override
