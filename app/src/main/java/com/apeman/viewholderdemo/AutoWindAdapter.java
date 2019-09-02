@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> implements GaCallback {
     private List<JSONObject> dataSource = new LinkedList<>();
-    private GaCallback registedGaCallback = null;
+    private GaCallback nextGaCallback = null;
     private final String from;
 
     public AutoWindAdapter(String from) {
@@ -28,7 +28,7 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> im
     }
 
     public void regGaCallback(GaCallback gaCallback) {
-        this.registedGaCallback = gaCallback;
+        this.nextGaCallback = gaCallback;
     }
 
     public void setData(List<JSONObject> ds) {
@@ -49,9 +49,9 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> im
 
     @Override
     public void handleGaEvent(GaInfo gaInfo) {
-        //TODO: GA统计
-        if (registedGaCallback != null) {
-            registedGaCallback.handleGaEvent(gaInfo);
+        //TODO: GA统计,可以自己统计 & 统计数据传递下去
+        if (nextGaCallback != null) {
+            nextGaCallback.handleGaEvent(gaInfo);
         }
     }
 
