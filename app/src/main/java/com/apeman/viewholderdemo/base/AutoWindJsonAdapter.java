@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apeman.library.ga.GaInfo;
-import com.apeman.library.holder.AutoWindViewHolder;
+import com.apeman.library.holder.GaViewHolder;
 import com.apeman.library.protocl.GaCallback;
 
 import org.json.JSONException;
@@ -18,25 +18,24 @@ import java.util.List;
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
-public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<AutoWindViewHolder>
+public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<GaViewHolder<JSONObject>>
         implements GaCallback {
-
-    private List<JSONObject> dataSource = new LinkedList<>();
     private final String from;
+    private GaCallback nextGaCallback = null;
+    private List<JSONObject> dataSource = new LinkedList<>();
+
     public AutoWindJsonAdapter(String from) {
         this.from = from;
     }
 
-    private GaCallback nextGaCallback = null;
-
-    public void subscribeGaEvent(GaCallback gaCallback) {
-        this.nextGaCallback = gaCallback;
+    public void subscribeGaEvent(GaCallback callback) {
+        this.nextGaCallback = callback;
     }
 
     @NonNull
     @Override
-    public AutoWindViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return HolderPool.getViewHolderByType(viewType, parent)
+    public GaViewHolder<JSONObject> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return JsonViewHolderPool.getViewHolderByType(viewType, parent)
                 .withGaCallback(this)
                 .withFrom(from);
     }
@@ -61,7 +60,7 @@ public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<AutoWindV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AutoWindViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GaViewHolder<JSONObject> holder, int position) {
         JSONObject data = dataSource.get(position);
         holder.bindData(data);
     }

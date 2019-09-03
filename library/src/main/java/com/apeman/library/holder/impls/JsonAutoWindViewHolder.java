@@ -44,13 +44,12 @@ public abstract class JsonAutoWindViewHolder extends AutoWindViewHolder<JSONObje
         Class autoWindCls = a.getClass();
         try {
             int viewId = (int) autoWindCls.getDeclaredMethod("viewId").invoke(a);
-            String fieldName = (String) autoWindCls.getDeclaredMethod("payloadKey").invoke(a);
-            boolean clickable = (boolean) autoWindCls.getDeclaredMethod("clickable").invoke(a);
             View targetView = getViewById(viewId);
             f.setAccessible(true);
             f.set(this, targetView);
+            String fieldName = (String) autoWindCls.getDeclaredMethod("payloadKey").invoke(a);
             viewForWind.put(fieldName, targetView);
-            if (clickable) {
+            if ((boolean) autoWindCls.getDeclaredMethod("clickable").invoke(a)) {
                 windViewWithClickListener(viewId);
             }
         } catch (Exception e) {

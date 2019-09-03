@@ -20,13 +20,6 @@ public interface AutoWindInterface<T> extends OnElementClickListener<T> {
     T getHolderData();
 
     /**
-     * 注册额外监听
-     *
-     * @param l
-     */
-    void regElementClickListener(OnElementClickListener<T> l);
-
-    /**
      * 绑定数据
      *
      * @param data
