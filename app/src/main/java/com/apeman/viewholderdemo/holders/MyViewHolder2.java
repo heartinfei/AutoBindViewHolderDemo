@@ -6,11 +6,10 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.apeman.viewholderdemo.R;
-import com.apeman.library.annotations.AutoClick;
 import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
 import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
+import com.apeman.viewholderdemo.R;
 
 import org.json.JSONObject;
 
@@ -20,8 +19,9 @@ import org.json.JSONObject;
 @HolderType(cellType = 1)
 public class MyViewHolder2 extends JsonAutoWindViewHolder {
 
-    @AutoClick(viewId = R.id.iv)
-    @AutoWind(viewId = R.id.iv, fieldName = "url")
+    @AutoWind(viewId = R.id.iv,
+            payloadKey = "url",
+            clickable = true)
     ImageView iv;
 
     public MyViewHolder2(@NonNull ViewGroup parenetView) {

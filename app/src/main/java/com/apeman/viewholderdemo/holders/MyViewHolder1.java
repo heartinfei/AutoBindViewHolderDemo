@@ -7,11 +7,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.apeman.library.annotations.AutoClick;
 import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
 import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
-import com.apeman.viewholderdemo.AutoWindAdapter;
 import com.apeman.viewholderdemo.R;
 
 import org.json.JSONObject;
@@ -21,11 +19,10 @@ import org.json.JSONObject;
  */
 @HolderType(cellType = 1)
 public class MyViewHolder1 extends JsonAutoWindViewHolder {
-    AutoWindAdapter adapter;
-    //TOTO:属性自定义，data更新
-    //
-    @AutoClick(viewId = R.id.textView)
-    @AutoWind(viewId = R.id.textView, fieldName = "title")
+
+    @AutoWind(viewId = R.id.textView,
+            payloadKey = "title",
+            clickable = true)
     TextView tv;
 
     public MyViewHolder1(@NonNull ViewGroup parenetView) {
@@ -33,8 +30,17 @@ public class MyViewHolder1 extends JsonAutoWindViewHolder {
     }
 
     @Override
+    protected boolean interceptViewDataBind(View targetView, String dataKey, JSONObject data) {
+        return super.interceptViewDataBind(targetView, dataKey, data);
+    }
+
+    @Override
+    protected boolean manualBindData(JSONObject data) {
+        return super.manualBindData(data);
+    }
+
+    @Override
     public void onViewClicked(View v, JSONObject data) {
-        //TODO：点击事件
         Log.i("MyViewHolder1", data.toString());
     }
 }

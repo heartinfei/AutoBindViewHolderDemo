@@ -20,6 +20,12 @@ public @interface AutoWind {
     /**
      * 数据字段名称
      */
-    String fieldName();
+    String payloadKey();
+
+    /**
+     * 设置点击监听
+     * @return true 添加{@link android.view.View.OnClickListener},false 不添加
+     */
+    boolean clickable() default false;
 }
 
