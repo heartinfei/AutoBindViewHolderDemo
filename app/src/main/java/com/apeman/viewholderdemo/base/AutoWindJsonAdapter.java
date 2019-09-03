@@ -1,4 +1,4 @@
-package com.apeman.viewholderdemo;
+package com.apeman.viewholderdemo.base;
 
 import android.view.ViewGroup;
 
@@ -15,19 +15,17 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.List;
 
-import io.github.heartinfei.slogger.S;
-
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
-public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> implements GaCallback {
+public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<AutoWindViewHolder> implements GaCallback {
     private List<JSONObject> dataSource = new LinkedList<>();
-    private GaCallback nextGaCallback = null;
     private final String from;
-
-    public AutoWindAdapter(String from) {
+    public AutoWindJsonAdapter(String from) {
         this.from = from;
     }
+
+    private GaCallback nextGaCallback = null;
 
     public void regGaCallback(GaCallback gaCallback) {
         this.nextGaCallback = gaCallback;
@@ -43,13 +41,14 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> im
 
     @Override
     public void handleGaEvent(GaInfo gaInfo) {
-        //TODO: GA统计,可以自己统计 & 统计数据传递下去
+        //GA统计,可以自己统计 &| 统计数据传递下去
+        onGaEvent(gaInfo);
         if (nextGaCallback != null) {
             nextGaCallback.handleGaEvent(gaInfo);
-        } else {
-            S.i(gaInfo.getGaData());
         }
     }
+
+    protected abstract void onGaEvent(GaInfo gaInfo);
 
     public void setData(List<JSONObject> ds) {
         dataSource.clear();

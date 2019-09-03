@@ -1,4 +1,4 @@
-package com.apeman.viewholderdemo;
+package com.apeman.viewholderdemo.base;
 
 import android.view.ViewGroup;
 

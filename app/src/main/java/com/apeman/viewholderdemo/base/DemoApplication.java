@@ -1,6 +1,8 @@
-package com.apeman.viewholderdemo;
+package com.apeman.viewholderdemo.base;
 
 import android.app.Application;
+
+import com.apeman.viewholderdemo.BuildConfig;
 
 import io.github.heartinfei.slogger.S;
 import io.github.heartinfei.slogger.SConfiguration;
