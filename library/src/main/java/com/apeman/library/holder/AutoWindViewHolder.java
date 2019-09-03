@@ -157,7 +157,7 @@ public abstract class AutoWindViewHolder<T> extends RecyclerView.ViewHolder impl
         }
 
         //传递统计业务
-        GaInfo gaInfo = new GaInfo(this, null);
+        GaInfo gaInfo = new GaInfo(view.getId(), this, null);
         deliverGaEvent(gaInfo);
     }
 

@@ -18,7 +18,9 @@ import java.util.List;
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
-public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<AutoWindViewHolder> implements GaCallback {
+public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<AutoWindViewHolder>
+        implements GaCallback {
+
     private List<JSONObject> dataSource = new LinkedList<>();
     private final String from;
     public AutoWindJsonAdapter(String from) {
@@ -27,7 +29,7 @@ public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<AutoWindV
 
     private GaCallback nextGaCallback = null;
 
-    public void regGaCallback(GaCallback gaCallback) {
+    public void subscribeGaEvent(GaCallback gaCallback) {
         this.nextGaCallback = gaCallback;
     }
 

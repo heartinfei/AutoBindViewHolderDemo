@@ -1,7 +1,6 @@
 package com.apeman.library.ga;
 
 import com.apeman.library.holder.AutoWindViewHolder;
-import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -12,13 +11,19 @@ import java.util.List;
  */
 public class GaInfo implements Iterator<GaInfo> {
     private AutoWindViewHolder holder;
-    private GaInfo parent = null;
+    private GaInfo parent;
+    private int eventViewId;
 
-    public GaInfo(AutoWindViewHolder h) {
-        this.holder = h;
+    public int getEventViewId() {
+        return eventViewId;
     }
 
     public GaInfo(AutoWindViewHolder h, GaInfo parent) {
+        this(-1, h, parent);
+    }
+
+    public GaInfo(int eventViewId, AutoWindViewHolder h, GaInfo parent) {
+        this.eventViewId = eventViewId;
         this.holder = h;
         this.parent = parent;
     }

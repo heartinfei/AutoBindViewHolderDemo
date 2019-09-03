@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
 import com.apeman.library.ga.GaInfo;
+import com.apeman.library.holder.AutoWindViewHolder;
 import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
-import com.apeman.viewholderdemo.base.AutoWindJsonAdapter;
 import com.apeman.viewholderdemo.R;
+import com.apeman.viewholderdemo.base.AutoWindJsonAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +38,8 @@ public class MyViewHolder4 extends JsonAutoWindViewHolder {
     public MyViewHolder4(@NonNull ViewGroup parenetView) {
         super(parenetView, R.layout.view_holder_4_layout);
         myAdapter = new MyAdapter("二级From");
-        myAdapter.regGaCallback(childGaInfo -> deliverGaEvent(new GaInfo(this, childGaInfo)));
+        //订阅GaEvent
+        myAdapter.subscribeGaEvent(childGaInfo -> deliverGaEvent(new GaInfo(this, childGaInfo)));
         rlv.setAdapter(myAdapter);
 
         RecyclerView.LayoutManager lm = new LinearLayoutManager(
@@ -65,13 +67,13 @@ public class MyViewHolder4 extends JsonAutoWindViewHolder {
 
     @Override
     public void onViewClicked(View v, JSONObject data) {
-
+        S.i(data.toString());
     }
 
     /**
      * @author Rango on 2019-09-03 wangqiang@smzdm.com
      */
-    static class MyAdapter extends AutoWindJsonAdapter{
+    static class MyAdapter extends AutoWindJsonAdapter {
         public MyAdapter(String from) {
             super(from);
         }
@@ -79,6 +81,7 @@ public class MyViewHolder4 extends JsonAutoWindViewHolder {
         @Override
         protected void onGaEvent(GaInfo gaInfo) {
             //可以处理点击事件统计
+            AutoWindViewHolder holder = gaInfo.getViewHolder();
             S.i(gaInfo.getGaData());
         }
     }
