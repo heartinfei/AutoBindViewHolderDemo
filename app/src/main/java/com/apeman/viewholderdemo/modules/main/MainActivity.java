@@ -19,7 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rlv;
-    private AutoWindJsonAdapter adapter = new MainAdapter("一级From");
+    private AutoWindJsonAdapter adapter = new MainAdapter("一级From MainActivity");
     private Gson gson = new Gson();
 
     @Override

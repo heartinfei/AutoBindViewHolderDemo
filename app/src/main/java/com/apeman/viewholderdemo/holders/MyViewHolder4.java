@@ -37,7 +37,7 @@ public class MyViewHolder4 extends JsonAutoWindViewHolder {
 
     public MyViewHolder4(@NonNull ViewGroup parenetView) {
         super(parenetView, R.layout.view_holder_4_layout);
-        myAdapter = new MyAdapter("二级From");
+        myAdapter = new MyAdapter("二级From Holder4");
         //订阅GaEvent
         myAdapter.subscribeGaEvent(childGaInfo -> deliverGaEvent(new GaInfo(this, childGaInfo)));
         rlv.setAdapter(myAdapter);
