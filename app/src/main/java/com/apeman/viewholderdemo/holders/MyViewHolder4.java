@@ -11,6 +11,7 @@ import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
 import com.apeman.library.ga.GaInfo;
 import com.apeman.library.holder.AutoWindViewHolder;
+import com.apeman.library.holder.GaViewHolder;
 import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
 import com.apeman.viewholderdemo.R;
 import com.apeman.viewholderdemo.base.AutoWindJsonAdapter;
@@ -68,6 +69,7 @@ public class MyViewHolder4 extends JsonAutoWindViewHolder {
     @Override
     public void onViewClicked(View v, JSONObject data) {
         S.i(data.toString());
+        //获取子卡片相对于当前ViewHolder的位置
     }
 
     /**
@@ -81,7 +83,7 @@ public class MyViewHolder4 extends JsonAutoWindViewHolder {
         @Override
         protected void onGaEvent(GaInfo gaInfo) {
             //可以处理点击事件统计
-            AutoWindViewHolder holder = gaInfo.getViewHolder();
+            GaViewHolder holder = gaInfo.getViewHolder();
             S.i(gaInfo.getGaData());
         }
     }

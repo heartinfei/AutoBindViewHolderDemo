@@ -24,5 +24,5 @@ public interface AutoWindInterface<T> extends OnElementClickListener<T> {
      *
      * @param data
      */
-    void bindData(T data);
+    void bindData(T data, int position);
 }

@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.apeman.library.R;
 import com.apeman.library.annotations.HolderType;
 import com.apeman.library.ga.GaInfo;
-import com.apeman.library.protocl.GaCallback;
 import com.apeman.library.protocl.OnElementClickListener;
 
 import java.util.LinkedHashMap;
@@ -33,6 +33,7 @@ public abstract class AutoWindViewHolder<T> extends GaViewHolder<T> implements V
     private List<OnElementClickListener<T>> regElementListeners = new LinkedList<>();
     //用于存储HolderData
     private final int TAG_KEY = R.id.viewExtra;
+    private int currentPosition = -1;
 
     public AutoWindViewHolder(@NonNull ViewGroup parentView, @LayoutRes int layout) {
         super(LayoutInflater.from(parentView.getContext())
@@ -53,7 +54,8 @@ public abstract class AutoWindViewHolder<T> extends GaViewHolder<T> implements V
     protected abstract void initViews();
 
     @Override
-    public void bindData(T data) {
+    public void bindData(T data, int position) {
+        this.currentPosition = position;
         itemView.setTag(TAG_KEY, data);
         if (manualBindData(data)) {
             return;
@@ -142,6 +144,7 @@ public abstract class AutoWindViewHolder<T> extends GaViewHolder<T> implements V
 
         //传递统计业务
         GaInfo gaInfo = new GaInfo(view.getId(), this, null);
+        gaInfo.setAdapterPosition(currentPosition);
         deliverGaEvent(gaInfo);
     }
 

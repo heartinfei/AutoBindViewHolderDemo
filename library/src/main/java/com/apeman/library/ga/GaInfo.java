@@ -1,6 +1,7 @@
 package com.apeman.library.ga;
 
 import com.apeman.library.holder.AutoWindViewHolder;
+import com.apeman.library.holder.GaViewHolder;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -10,9 +11,10 @@ import java.util.List;
  * @author Rango on 2019-09-02 wangqiang@smzdm.com
  */
 public class GaInfo implements Iterator<GaInfo> {
-    private AutoWindViewHolder holder;
     private GaInfo parent;
     private int eventViewId;
+    private int adapterPosition;
+    private GaViewHolder holder;
 
     public int getEventViewId() {
         return eventViewId;
@@ -28,7 +30,15 @@ public class GaInfo implements Iterator<GaInfo> {
         this.parent = parent;
     }
 
-    public AutoWindViewHolder getViewHolder() {
+    public int getAdapterPosition() {
+        return adapterPosition;
+    }
+
+    public void setAdapterPosition(int adapterPosition) {
+        this.adapterPosition = adapterPosition;
+    }
+
+    public GaViewHolder getViewHolder() {
         return holder;
     }
 
@@ -40,14 +50,14 @@ public class GaInfo implements Iterator<GaInfo> {
         List<String> gaChains = getGaChain(this);
         String result = "";
         for (String f : gaChains) {
-            result += f + "_";
+            result += f + "#";
         }
         return result;
     }
 
     private List<String> getGaChain(GaInfo e) {
         List<String> gas = new LinkedList<>();
-        gas.add(e.getViewHolder().getFrom());
+        gas.add(e.getViewHolder().getFrom() +" AdapterPosition:"+e.getAdapterPosition());
         if (e.hasNext()) {
             gas.addAll(getGaChain(e.next()));
         }

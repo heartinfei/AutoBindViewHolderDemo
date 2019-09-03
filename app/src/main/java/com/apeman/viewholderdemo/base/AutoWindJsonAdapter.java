@@ -22,7 +22,7 @@ public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<GaViewHol
         implements GaCallback {
     private final String from;
     private GaCallback nextGaCallback = null;
-    private List<JSONObject> dataSource = new LinkedList<>();
+    protected List<JSONObject> dataSource = new LinkedList<>();
 
     public AutoWindJsonAdapter(String from) {
         this.from = from;
@@ -62,7 +62,7 @@ public abstract class AutoWindJsonAdapter extends RecyclerView.Adapter<GaViewHol
     @Override
     public void onBindViewHolder(@NonNull GaViewHolder<JSONObject> holder, int position) {
         JSONObject data = dataSource.get(position);
-        holder.bindData(data);
+        holder.bindData(data, position);
     }
 
     @Override
