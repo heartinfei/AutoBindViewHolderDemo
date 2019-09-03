@@ -15,6 +15,8 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.github.heartinfei.slogger.S;
+
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
@@ -44,6 +46,8 @@ public class AutoWindAdapter extends RecyclerView.Adapter<AutoWindViewHolder> im
         //TODO: GA统计,可以自己统计 & 统计数据传递下去
         if (nextGaCallback != null) {
             nextGaCallback.handleGaEvent(gaInfo);
+        } else {
+            S.i(gaInfo.getGaData());
         }
     }
 

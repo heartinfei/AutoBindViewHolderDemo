@@ -13,10 +13,12 @@ import com.apeman.viewholderdemo.R;
 
 import org.json.JSONObject;
 
+import io.github.heartinfei.slogger.S;
+
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
-@HolderType(cellType = 1)
+@HolderType(cellType = 2)
 public class MyViewHolder2 extends JsonAutoWindViewHolder {
 
     @AutoWind(viewId = R.id.iv,
@@ -30,6 +32,6 @@ public class MyViewHolder2 extends JsonAutoWindViewHolder {
 
     @Override
     public void onViewClicked(View v, JSONObject data) {
-        //TODO：点击事件
+        S.i("ViewId:" + v.getId() + "," + data.toString());
     }
 }

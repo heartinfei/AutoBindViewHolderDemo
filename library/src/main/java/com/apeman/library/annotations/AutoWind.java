@@ -20,7 +20,7 @@ public @interface AutoWind {
     /**
      * 数据字段名称
      */
-    String payloadKey();
+    String payloadKey() default "";
 
     /**
      * 设置点击监听

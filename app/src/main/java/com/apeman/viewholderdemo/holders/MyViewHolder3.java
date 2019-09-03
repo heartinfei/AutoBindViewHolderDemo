@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
 import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
@@ -14,6 +15,8 @@ import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
 import com.apeman.viewholderdemo.R;
 
 import org.json.JSONObject;
+
+import io.github.heartinfei.slogger.S;
 
 /**
  * {
@@ -24,9 +27,9 @@ import org.json.JSONObject;
  *
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
-@HolderType(cellType = 1)
+@HolderType(cellType = 3)
 public class MyViewHolder3 extends JsonAutoWindViewHolder {
-
+    CardView c;
     @AutoWind(viewId = R.id.textView,
             payloadKey = "name")
     TextView tv;
@@ -42,7 +45,6 @@ public class MyViewHolder3 extends JsonAutoWindViewHolder {
 
     @Override
     public void onViewClicked(View v, JSONObject data) {
-        //TODO：点击事件
-        Log.i("onViewClicked", data.toString());
+        S.i("ViewId:" + v.getId() + "," + data.toString());
     }
 }

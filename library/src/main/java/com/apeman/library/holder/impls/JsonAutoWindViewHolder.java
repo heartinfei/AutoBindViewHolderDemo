@@ -33,7 +33,9 @@ public abstract class JsonAutoWindViewHolder extends AutoWindViewHolder<JSONObje
     protected void initViews() {
         for (Field f : getClass().getDeclaredFields()) {
             Annotation a = f.getAnnotation(AutoWind.class);
-            handleAutoWindAnnotation(f, a);
+            if (a != null) {
+                handleAutoWindAnnotation(f, a);
+            }
         }
     }
 
