@@ -28,7 +28,7 @@ public abstract class GaViewHolder<T> extends RecyclerView.ViewHolder implements
         return this;
     }
 
-    protected void deliverGaEvent(GaInfo gaInfo) {
+    protected void dispatchGaEvent(GaInfo gaInfo) {
         if (gaCallback != null) {
             gaCallback.handleGaEvent(gaInfo);
         }

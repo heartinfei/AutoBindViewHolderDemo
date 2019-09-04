@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.apeman.library.R;
 import com.apeman.library.annotations.HolderType;
@@ -145,7 +144,7 @@ public abstract class AutoWindViewHolder<T> extends GaViewHolder<T> implements V
         //传递统计业务
         GaInfo gaInfo = new GaInfo(view.getId(), this, null);
         gaInfo.setAdapterPosition(currentPosition);
-        deliverGaEvent(gaInfo);
+        dispatchGaEvent(gaInfo);
     }
 
     @Override

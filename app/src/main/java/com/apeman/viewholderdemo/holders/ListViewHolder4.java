@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apeman.library.annotations.AutoWind;
 import com.apeman.library.annotations.HolderType;
 import com.apeman.library.ga.GaInfo;
-import com.apeman.library.holder.AutoWindViewHolder;
 import com.apeman.library.holder.GaViewHolder;
 import com.apeman.library.holder.impls.JsonAutoWindViewHolder;
 import com.apeman.viewholderdemo.R;
@@ -29,18 +28,18 @@ import io.github.heartinfei.slogger.S;
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
 @HolderType(cellType = 4)
-public class MyViewHolder4 extends JsonAutoWindViewHolder {
+public class ListViewHolder4 extends JsonAutoWindViewHolder {
 
     @AutoWind(viewId = R.id.rlv, payloadKey = "list")
     private RecyclerView rlv;
 
     private MyAdapter myAdapter;
 
-    public MyViewHolder4(@NonNull ViewGroup parenetView) {
+    public ListViewHolder4(@NonNull ViewGroup parenetView) {
         super(parenetView, R.layout.view_holder_4_layout);
         myAdapter = new MyAdapter("二级From Holder4");
         //订阅GaEvent
-        myAdapter.subscribeGaEvent(childGaInfo -> deliverGaEvent(new GaInfo(this, childGaInfo)));
+        myAdapter.subscribeGaEvent(childGaInfo -> dispatchGaEvent(new GaInfo(this, childGaInfo)));
         rlv.setAdapter(myAdapter);
 
         RecyclerView.LayoutManager lm = new LinearLayoutManager(

@@ -2,7 +2,7 @@ package com.apeman.viewholderdemo.holders;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -18,16 +18,16 @@ import io.github.heartinfei.slogger.S;
 /**
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
-@HolderType(cellType = 1)
-public class MyViewHolder1 extends JsonAutoWindViewHolder {
+@HolderType(cellType = 2)
+public class ImageViewHolder2 extends JsonAutoWindViewHolder {
 
-    @AutoWind(viewId = R.id.textView,
-            payloadKey = "title",
+    @AutoWind(viewId = R.id.iv,
+            payloadKey = "url",
             clickable = true)
-    TextView tv;
+    ImageView iv;
 
-    public MyViewHolder1(@NonNull ViewGroup parenetView) {
-        super(parenetView, R.layout.view_holder_1_layout);
+    public ImageViewHolder2(@NonNull ViewGroup parenetView) {
+        super(parenetView, R.layout.view_holder_2_layout);
     }
 
     @Override

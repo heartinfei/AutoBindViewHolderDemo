@@ -28,7 +28,7 @@ import io.github.heartinfei.slogger.S;
  * @author Rango on 2019-08-23 wangqiang@smzdm.com
  */
 @HolderType(cellType = 3)
-public class MyViewHolder3 extends JsonAutoWindViewHolder {
+public class UserViewHolder3 extends JsonAutoWindViewHolder {
     CardView c;
     @AutoWind(viewId = R.id.textView,
             payloadKey = "name")
@@ -39,7 +39,7 @@ public class MyViewHolder3 extends JsonAutoWindViewHolder {
             clickable = true)
     ImageView iv;
 
-    public MyViewHolder3(@NonNull ViewGroup parenetView) {
+    public UserViewHolder3(@NonNull ViewGroup parenetView) {
         super(parenetView, R.layout.view_holder_3_layout);
     }
 
