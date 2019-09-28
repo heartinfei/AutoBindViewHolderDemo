@@ -4,7 +4,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.apeman.library.BaseBean;
+import com.apeman.library.bean.BaseBean;
 import com.apeman.library.holder.AutoWindViewHolder;
 
 /**
